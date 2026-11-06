@@ -712,13 +712,13 @@ module ChemGroups_mod
       remPPM25_nonRes, remPPM25_Res  &
     /)
   
-  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 added pCl
+  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 added pCl. Note that I have NOT included pNO3_f, because it is associated with NaNO3. The Na comes from sea salt, which is not included here. I think maybe pNO3_f should be included here though?
     SIA_GROUP = (/ SO4, NO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl
   
-  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 added pCl
+  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 added pCl. Note that I have NOT included pNO3_f, because it is associated with NaNO3. The Na comes from sea salt, which is not included here. I think maybe pNO3_f should be included here though?
     WDEP_SIA_GROUP = (/ SO4, NO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl
   
-  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 added pCl
+  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 added pCl. Note that I have NOT included pNO3_f, because it is associated with NaNO3. The Na comes from sea salt, which is not included here. I think maybe pNO3_f should be included here though?
     DDEP_SIA_GROUP = (/ SO4, NO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl
   
   integer, public, target, save, dimension (2) :: &

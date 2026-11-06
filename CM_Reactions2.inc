@@ -284,7 +284,7 @@
   ! Nothing to do for NO3_f! xnew(NO3_f) = max(0.0, xold(NO3_f))
 
 
-!-> pNO3_f !DYTT-SSfreac 26/06/26 have to add in pNO3_f production from HNO3 + fine sea salt
+!-> pNO3_f !DYTT-SSfreac 26/06/26 added in pNO3_f production from HNO3 + fine sea salt
 
   P = rct(102,k) * xnew(HNO3)
   

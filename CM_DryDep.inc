@@ -101,7 +101,7 @@ type(dep_t), public, dimension(NDRYDEP_ADV), save :: CM_DDepMap = (/ &
 , dep_t("POLLEN_MUGWORT3", "POLL18    ", -999.0 ) &
 , dep_t("POLLEN_MUGWORT4", "POLL18    ", -999.0 ) &
 , dep_t("POLLEN_MUGWORT5", "POLL18    ", -999.0 ) &
-, dep_t("HCl            ", "HCl       ", -999.0 ) & !DYTT 02/04/26 added this line. Dry dep like HCl. Previously like HNO3.
-, dep_t("pCl            ", "PMfNO3    ", -999.0 ) & !DYTT 01/04/26 changed this to ddep like PMfNO3 rather than PMf. Requires corresponding change around L397 in DryDep_mod.f90 to conserve mass.
-, dep_t("pNO3_f         ", "SSf       ", -999.0 ) & !DYTT-SSfreac 03/07/26 make pNO3_f deposit like fine seasalt due to no internal mixing of NaNO3_f
+, dep_t("HCl            ", "HCl       ", -999.0 ) & !DYTT 02/04/26 added this line. Dry dep like HCl, i.e. like HNO3 but with diffusivity in air specific to HCl.
+, dep_t("pCl            ", "PMfNO3    ", -999.0 ) & !DYTT 01/04/26 ddep like PMfNO3, i.e. like PMf, but with near-surface evapouration effect similar to NH4NO3. Requires corresponding change around L397 in DryDep_mod.f90 to conserve mass.
+, dep_t("pNO3_f         ", "SSf       ", -999.0 ) & !DYTT-SSfreac 03/07/26 make pNO3_f deposit like fine seasalt. This is NO3_f associated with NaNO3 which is formed on fine sea salt (NaCl (fine) + HNO3 -> HCl + NaNO3 (fine)), which is external mixed and therefore deposits like all other SSf. 
 /)

@@ -641,7 +641,7 @@
   L = rct(21,k) * xnew(OH)  &
     + rcphot(IDHNO3,k)  &
     + rct(98,k)  &
-    + rct(99,k) &
+    + rct(99,k) & !DYTT this is loss via reaction with coarse sea salt (this already existed in previous model versions)
     + rct(102,k) !DYTT-SSfreac 26/06/26 added in loss via reaction with fine sea salt 
   
   xnew(HNO3) = (xold(HNO3) + dt2 * P) / (1.0 + dt2 * L)
@@ -1381,17 +1381,17 @@
 
 
 
-!-> HCl !DYTT 25/02/26 added HCl emissions
+!-> HCl !DYTT
 
-  P = rcemis(HCl,k) & 
-  + rct(99,k) * xnew(HNO3) & !DYTT 25/02/26 added in this reaction
-  + rct(102,k) * xnew(HNO3) !DYTT-SSfreac 26/06/26 added in production via HNO3 reacting with fine sea salt
+  P = rcemis(HCl,k) & !DYTT 25/02/26 added HCl emissions
+  + rct(99,k) * xnew(HNO3) & !DYTT 25/02/26 added in HCl production via HNO3 + coarse sea salt
+  + rct(102,k) * xnew(HNO3) !DYTT-SSfreac 26/06/26 added in HCl production via HNO3 + fine sea salt
 
   ! L = 0.0
   
   xnew(HCl) = xold(HCl) + dt2 * P
 
-!-> pCl !DYTT 25/02/26 added pCl emissions (note that this will be zero, as current dataset does not have pCl emissions)
+!-> pCl !DYTT 25/02/26 added in possibility for pCl emissions 
 
   P = rcemis(pCl,k)
   

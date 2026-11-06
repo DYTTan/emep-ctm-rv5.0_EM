@@ -201,12 +201,12 @@ module ChemSpecs_mod
 
   integer, public, parameter :: & !DYTT 25/02/26 added HCl and pCl
       HCl= 137 &
-    , pCl= 138 &
-    , pNO3_f= 139 !DYTT-SSfreac 03/07/26 added this
+    , pCl= 138 & !DYTT this is the Cl- associated with NH4Cl
+    , pNO3_f= 139 !DYTT-SSfreac 03/07/26 added this. pNO3_f is the fine NO3- associated with NaNO3 (from reaction NaCl (fine) + HNO3 -> HCl + NaNO3 (fine))
   
   !+ Defines indices for ADV : Advected species
   integer, public, parameter :: FIRST_ADV=16, &
-                                 LAST_ADV=138+1 !DYTT 25/02/26 changed this. Previously LAST_ADV=136 !DYTT-SSfreac 03/07/26 +1 for pNO3_f
+                                 LAST_ADV=136+2+1 !DYTT 25/02/26 changed this. Previously LAST_ADV=136. Added 2 for HCl and pCl. !DYTT-SSfreac 03/07/26 +1 for pNO3_f
   
   integer, public, parameter :: &
       IXADV_RO2POOL     =   1  &
@@ -356,7 +356,7 @@ module ChemSpecs_mod
       IXADV_remPPM_c_Res= 121 &
     , IXADV_HCl    = 122 & !DYTT 25/02/26 added HCl
     , IXADV_pCl    = 123 & !DYTT 25/02/26 added pCl
-    , IXADV_pNO3_f = 124   !DYTT-SSfreac 03/07/26 added this
+    , IXADV_pNO3_f = 124   !DYTT-SSfreac 03/07/26 added pNO3_f
   
   !+ Defines indices for SHL : Short-lived (non-advected) species
   integer, public, parameter :: FIRST_SHL=1, &
@@ -594,7 +594,7 @@ contains
     species(remPPM_c_Res) = Chemical("remPPM_c_Res",  12.0000,  0,   0.0000,   0.0000,   0.0000 )
     species(HCl         ) = Chemical("HCl         ",  36.4600,  0,   0.0000,   0.0000,   0.0000 ) !DYTT 25/02/26 added this line
     species(pCl         ) = Chemical("pCl         ",  35.4500,  0,   0.0000,   0.0000,   0.0000 ) !DYTT 25/02/26 added this line
-    species(pNO3_f       ) = Chemical("pNO3_f     ",  62.0000,  0,   0.0000,   1.0000,   0.0000 ) !DYTT-SSfreac 03/07/26 added this
+    species(pNO3_f       ) = Chemical("pNO3_f     ",  62.0000,  0,   0.0000,   1.0000,   0.0000 ) !DYTT-SSfreac 03/07/26 added this line
   end subroutine define_chemicals
 
 end module ChemSpecs_mod

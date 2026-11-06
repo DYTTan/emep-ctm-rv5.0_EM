@@ -88,7 +88,7 @@ type(dep_t), public, dimension(NWETDEP_ADV), save :: CM_WDepMap = (/ &
 , dep_t("POLLEN_MUGWORT3", "POLLw     ", -999.0 ) &
 , dep_t("POLLEN_MUGWORT4", "POLLw     ", -999.0 ) &
 , dep_t("POLLEN_MUGWORT5", "POLLw     ", -999.0 ) &
-, dep_t("HCl            ", "HNO3      ", -999.0 ) & !DYTT 25/02/26 added this line. Wet dep like HNO3
+, dep_t("HCl            ", "HNO3      ", -999.0 ) & !DYTT 25/02/26 added this line. Wet dep like HNO3, following approach by Wang et al. 2025 (https://doi.org/10.1016/j.envint.2024.109207)
 , dep_t("pCl            ", "PMf       ", -999.0 ) & !DYTT 25/02/26 added this line. Wet dep like fine PM
-, dep_t("pNO3_f         ", "SSf       ", -999.0 ) & !DYTT-SSfreac 03/07/26 make pNO3_f deposit like fine seasalt due to no internal mixing of NaNO3_f
+, dep_t("pNO3_f         ", "SSf       ", -999.0 ) & !DYTT-SSfreac 03/07/26 make pNO3_f deposit like fine seasalt. This is because this is the NO3_f associated with NaNO3 (fine), formed via HNO3 + NaCl (fine) --> HCl + NaNO3 (fine) reaction. Since sea salt is externally mixed, NaNO3 will be in the fine sea salt particle, and hence deposits like fine sea salt.
 /)

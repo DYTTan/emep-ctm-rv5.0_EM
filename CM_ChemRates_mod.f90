@@ -250,8 +250,8 @@ contains
               & GAM=0.1,  &
               & S=S_M2M3(AERO%DU_C,  &
               & :))
-    rct(99,:) = 3.0 * UPTAKERATE(CHNO3,  & !DYTT 10/04/26 double the reaction rate. 20/04/26 10 x reaction rate just to experiment 23/04/26 back to original
-              & GAM=0.01,  &
+    rct(99,:) = UPTAKERATE(CHNO3,  & 
+              & GAM=0.03,  & !DYTT previously GAM=0.01. GAM is the uptake coefficient of HNO3 onto coarse sea salt. This value of GAM gives best agreement with HCl measurements.
               & S=S_M2M3(AERO%SS_C,  &
               & :))
     rct(100,:) = UPTAKERATE(CHO2,  &
@@ -259,9 +259,9 @@ contains
                & S=S_M2M3(AERO%PM,  &
                & :))
     rct(101,:) = EC_AGEING_RATE()
-    rct(102,:) = 3.0 * UPTAKERATE(CHNO3,  & !DYTT-SSfreac 26/06/26 Same as rct(99,:) but with SS_F aerosol surface area. Same mean molecular speed of HNO3
-              & GAM=0.01,  & !DYTT-SSfreac 26/06/26 assume same probablility of reaction occuring if HNO3 collides with sea salt aerosol, no matter the size of the sea salt aerosol. The difference in size, and therefore surface area, is accounted for in the next line.
-              & S=S_M2M3(AERO%SS_F,  & !DYTT-SSfreac 26/06/26 fine sea salt surface area
+    rct(102,:) = UPTAKERATE(CHNO3,  & !DYTT-SSfreac 26/06/26 Same as rct(99,:) but with SS_F aerosol surface area. Same mean molecular speed of HNO3
+              & GAM=0.03,  & !DYTT-SSfreac 26/06/26 assume same probablility of reaction occuring if HNO3 collides with sea salt aerosol, no matter the size of the sea salt aerosol. The difference in size, and therefore surface area, is accounted for in the next line.
+              & S=S_M2M3(AERO%SS_F,  & !DYTT-SSfreac 26/06/26 use fine sea salt surface area
               & :))
   
   end subroutine setChemRates

@@ -219,20 +219,20 @@ contains
         ! isorropia only for when T > 250 K and P > 200 hPa (CMAQ and GEOS-Chem; Shannon Capps discussion)
         if (pp(k) > 20000.0 .and. temp(k) > 250.0) then 
   
-          !if ( AERO%INTERNALMIXED .and. SSf_ix > 0 ) then !DYTT 24/04/26 need to assume no internal mixing of sea salt aerosol now that we introduce pCl as an EMEP variable - have commented out if statement
-            ! if internally mixed is assumed, Na and Cl as mass-fraction of seasalt aerosol.
+          !if ( AERO%INTERNALMIXED .and. SSf_ix > 0 ) then !DYTT 24/04/26 By definition, this code works on the assumption of external mixing, i.e. AERO%INTERNALMIXED = F. So the only 'else' statement is appropriate, the rest is commented out.
+          ! if internally mixed is assumed, Na and Cl as mass-fraction of seasalt aerosol.
           !  WI(1) = max(0., xn_2d(SSf_ix ,k) * Ncm3_to_molesm3 * species(SSf_ix)%molwt * 0.30 / MWNA )
           !  WI(5) = max(0., xn_2d(SSf_ix ,k) * Ncm3_to_molesm3 * species(SSf_ix)%molwt * 0.55 / MWCL )
           !else
           WI(1)  = 0.0
-          WI(5)  = 0.0 + MAX(( xn_2d(pCl_ix,k) + xn_2d(HCl_ix, k) ) * Ncm3_to_molesm3, CONMIN ) !DYTT 24/04/26 adding pCl and HCl in mol/m3
+          WI(5)  = 0.0 + MAX(( xn_2d(pCl_ix,k) + xn_2d(HCl_ix, k) ) * Ncm3_to_molesm3, CONMIN ) !DYTT 24/04/26 added pCl and HCl as ISORROPIA input in mol/m3
           !endif
   
           WI(2)  = MAX(  xn_2d(SO4_ix  ,k) * Ncm3_to_molesm3, CONMIN )
           WI(3)  = MAX(( xn_2d(NH3_ix  ,k) + xn_2d(NH4_f_ix,k) ) * Ncm3_to_molesm3, CONMIN ) ! NH3, NH4
           WI(4)  = MAX(( xn_2d(NO3_f_ix,k) + xn_2d(HNO3_ix, k) ) * Ncm3_to_molesm3, CONMIN )
   
-          !if ( AERO%INTERNALMIXED .and. AERO%CATIONS .and. SSf_ix > 0) then !DYTT 24/04/26 again, need to assume no internal mixing for pCl additions to work - have commented out the if statement
+          !if ( AERO%INTERNALMIXED .and. AERO%CATIONS .and. SSf_ix > 0) then !DYTT 24/04/26 By definition, this code works on the assumption of external mixing, i.e. AERO%INTERNALMIXED = F. So only the 'else' statement is appropriate, the rest is commented out.
             ! mass percentages of sea salt for below species taken from GEOS-Chem
           !  WI(6) = max(0., xn_2d(SSf_ix ,k) * Ncm3_to_molesm3 * species(SSf_ix)%molwt * 0.0116 / MWCA )
           !  WI(7) = max(0., xn_2d(SSf_ix ,k) * Ncm3_to_molesm3 * species(SSf_ix)%molwt * 0.0110 / MWK  )
@@ -280,7 +280,7 @@ contains
           ! gas outputs are in moles/m3(air)
           xn_2d(NH3_ix ,k) = max( gas(1), CONMIN ) * molesm3_to_Ncm3
           xn_2d(HNO3_ix,k) = max( gas(2), CONMIN ) * molesm3_to_Ncm3
-          xn_2d(HCl_ix,k)  = max( gas(3), CONMIN ) * molesm3_to_Ncm3 !DYTT 24/04/26 adding in HCl
+          xn_2d(HCl_ix,k)  = max( gas(3), CONMIN ) * molesm3_to_Ncm3 !DYTT 24/04/26 updating HCl after calling ISORROPIA
   
           ! aerosol outputs are in moles/m3(air)
           xn_2d(NH4_f_ix,k) = max( wt(3) - gas(1), CONMIN ) * molesm3_to_Ncm3
@@ -297,7 +297,7 @@ contains
           !xn_2d(NO3_f_ix,k ) = tmpno3 - xn_2d(HNO3_ix,k)
           !NOV22 - get some v.small neg., so use max below. Test properly later.
           xn_2d(NO3_f_ix,k ) = max( wt(4) - gas(2), CONMIN )  * molesm3_to_Ncm3 
-          xn_2d(pCl_ix,k )   = max( wt(5) - gas(3), CONMIN )  * molesm3_to_Ncm3 !DYTT 24/04/26 updating pCl. Note: this is only the case for NO internal mixing. would need to subtract the sea salt chloride as well but we don't really know what this is - hence the choice to turn off internal mixing
+          xn_2d(pCl_ix,k )   = max( wt(5) - gas(3), CONMIN )  * molesm3_to_Ncm3 !DYTT 24/04/26 updating pCl after calling ISORROPIA.
   
     !      H2O_eqsam(i,j,KCHEMTOP:KMAX_MID) = max(0., aH2Oout(KCHEMTOP:KMAX_MID) )
           
@@ -459,7 +459,7 @@ contains
 
 
   if ( debug_flag  ) then ! Selected debug cell
-    write(*,*)'Before EQSAM',xn_2d(SO4_ix,20),xn_2d(HNO3_ix,20),xn_2d(HCl_ix,20),xn_2d(pCl_ix,20),& !DYTT 25/02/26 HCl and pCl
+    write(*,*)'Before EQSAM',xn_2d(SO4_ix,20),xn_2d(HNO3_ix,20),xn_2d(HCl_ix,20),xn_2d(pCl_ix,20),& !DYTT 25/02/26 added HCl and pCl
                xn_2d(NH3_ix,20),xn_2d(NO3_f_ix,20),xn_2d(NH4_f_ix,20)
   end if
 
@@ -470,7 +470,7 @@ contains
     no3in(KCHEMTOP:KMAX_MID)  = xn_2d(NO3_f_ix,KCHEMTOP:KMAX_MID)*1.e12/AVOG 
     nh4in(KCHEMTOP:KMAX_MID)  = xn_2d(NH4_f_ix,KCHEMTOP:KMAX_MID)*1.e12/AVOG
     HClin(KCHEMTOP:KMAX_MID)  = xn_2d(HCl_ix,KCHEMTOP:KMAX_MID)  *1.e12/AVOG !DYTT 25/02/26 added this line
-    !if ( iSeaSalt > 0 .and. AERO%INTERNALMIXED) then ! DYTT 24/03/26 commented out the first if statement (going back to version from 25/02/26)
+    !if ( iSeaSalt > 0 .and. AERO%INTERNALMIXED) then ! DYTT 24/03/26 By definition, this code works on the assumption of external mixing, i.e. AERO%INTERNALMIXED = F. So only the 'else' statement is appropriate, the rest is commented out.
     !  NAin(KCHEMTOP:KMAX_MID)  = xn_2d(iSeaSalt,KCHEMTOP:KMAX_MID)*1.e12/AVOG* species(iSeaSalt)%molwt * 0.30 / MWNA
     !  CLin(KCHEMTOP:KMAX_MID)  = xn_2d(iSeaSalt,KCHEMTOP:KMAX_MID)*1.e12/AVOG* species(iSeaSalt)%molwt * 0.55 / MWCL + xn_2d(pCl_ix,KCHEMTOP:KMAX_MID)*1.e12/AVOG !DYTT 17/03/26 added on pCl component
     !  CAin(KCHEMTOP:KMAX_MID) = xn_2d(iSeaSalt,KCHEMTOP:KMAX_MID)*1.e12/AVOG* species(iSeaSalt)%molwt * 0.01 / MWCA
@@ -478,7 +478,7 @@ contains
     !  Kin (KCHEMTOP:KMAX_MID) = xn_2d(iSeaSalt,KCHEMTOP:KMAX_MID)*1.e12/AVOG* species(iSeaSalt)%molwt * 0.01 / MWK
     !else
       NAin(KCHEMTOP:KMAX_MID)  = 0.0
-      CLin(KCHEMTOP:KMAX_MID)  = xn_2d(pCl_ix,KCHEMTOP:KMAX_MID)*1.e12/AVOG !DYTT 25/02/26 changed this. Previously CLin(KCHEMTOP:KMAX_MID)  = 0.0
+      CLin(KCHEMTOP:KMAX_MID)  = xn_2d(pCl_ix,KCHEMTOP:KMAX_MID)*1.e12/AVOG !DYTT 25/02/26 Added pCl as EQSAM input. Previously CLin(KCHEMTOP:KMAX_MID)  = 0.0
       CAin(KCHEMTOP:KMAX_MID)  = 0.0
       MGin(KCHEMTOP:KMAX_MID)  = 0.0
       Kin (KCHEMTOP:KMAX_MID)  = 0.0
@@ -496,7 +496,7 @@ contains
 !                     aSO4out, aNO3out, aNH4out, aNAout, aCLout,            &
 !                     gSO4out, gNH3out, gNO3out, gClout, aH2Oout, apHout, KCHEMTOP, KMAX_MID)
 !ST:1.05.2023
-   call EQSAM4clim (so4in,HClin,hno3in,no3in,nh3in,nh4in,NAin,CLin,CAin,MGin,Kin,rlhum,tmpr,   & !DYTT 25/02/26 added HClin
+   call EQSAM4clim (so4in,HClin,hno3in,no3in,nh3in,nh4in,NAin,CLin,CAin,MGin,Kin,rlhum,tmpr,   & !DYTT 25/02/26 added HClin. CLin already existed
                      aSO4out, aNO3out, aNH4out, aCLout, gSO4out, gNH3out, gNO3out, gCLout, &
                      aH2Oout, apHout, KCHEMTOP,KMAX_MID)
  
@@ -542,7 +542,7 @@ contains
       nh3ins  = nh3in(KMAX_MID:KMAX_MID)
       no3ins  = no3in(KMAX_MID:KMAX_MID)
       nh4ins  = nh4in(KMAX_MID:KMAX_MID)
-  !if ( iSeaSalt > 0 .and. AERO%INTERNALMIXED) then ! DYTT 24/03/26 commented out the first if statement (going back to version from 25/02/26)
+  !if ( iSeaSalt > 0 .and. AERO%INTERNALMIXED) then ! DYTT 24/03/26 By definition, this code works on the assumption of external mixing, i.e. AERO%INTERNALMIXED = F. So only the 'else' statement is appropriate, the rest is commented out.
   !    NAins   = NAin(KMAX_MID:KMAX_MID)
   !    CLins   = CLin(KMAX_MID:KMAX_MID)
   !    CAins   = CAin(KMAX_MID:KMAX_MID)

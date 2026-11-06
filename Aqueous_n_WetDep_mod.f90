@@ -584,7 +584,7 @@ subroutine setup_aqurates(b ,cloudwater,incloud,pres)
     so4_aq(k)= (xn_2d(SO4,k)*1000./AVOG)/cloudwater(k) !xn_2d=molec cm-3
                                                 !cloudwater volume mix. ratio
                                                 !so4_aq= mol/l 
-    !no3_aq(k)= ( (xn_2d(NO3_F,k)+xn_2d(HNO3,k))*1000./AVOG)/cloudwater(k) !DYTT-SSfreac 03/07/26 commented out this line and replaced by line below
+    !no3_aq(k)= ( (xn_2d(NO3_F,k)+xn_2d(HNO3,k))*1000./AVOG)/cloudwater(k) !DYTT-SSfreac 03/07/26 commented out this line and have replaced it by line below
     no3_aq(k)= ( (xn_2d(NO3_F,k)+xn_2d(HNO3,k)+xn_2d(pNO3_F,k))*1000./AVOG)/cloudwater(k) !DYTT-SSfreac 03/07/26 added in pNO3_F
     if (NH4_F>0) then
        nh4_aq(k) =  ( xn_2d(NH4_F,k) *1000./AVOG )/cloudwater(k)!only nh4+ now
