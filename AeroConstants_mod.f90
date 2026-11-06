@@ -44,7 +44,7 @@ module AeroConstants_mod
      character(len=15) :: EQUILIB  ='EQSAM'   !DYTT 25/02/26 changed from MARS to EQSAM. 23/04/26 to ISORROPIA  29/04/26 to EQSAM ! 'ISORROPIA', 'EQSAM' or 'MARS' !aerosol thermodynamics 
      character(len=15) :: EQUILIB_WATER  = 'EQSAM' !DYTT 25/02/26 changed from MARS to EQSAM. 23/04/26 to ISORROPIA 29/04/26 EQSAM ! 'ISORROPIA', 'MARS' or 'EQSAM' !aerosol thermodynamics for PM water
      logical          :: DYNAMICS = .false.
-     logical          :: INTERNALMIXED = .true. ! sea salt assumption, now only used by ISORROPIA-Lite
+     logical          :: INTERNALMIXED = .false. ! sea salt assumption, now only used by ISORROPIA-Lite
      logical          :: CATIONS = .true.       ! dust cat assumption, now only used by ISORROPIA-Lite
      integer          :: NSIZE    = 7
      integer :: PM_F=1,SS_F=2,DU_F=3,SS_C=4,DU_C=5,PM=6  ! Will be set in GasParticleCoeffs_mod
