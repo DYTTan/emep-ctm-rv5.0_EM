@@ -41,10 +41,10 @@ module AeroConstants_mod
 
    type, public :: aero_t
      ! EMEP only
-     character(len=15) :: EQUILIB  ='EQSAM'   ! 'ISORROPIA', 'EQSAM' !aerosol thermodynamics !DYTT Note that this version does not work with MARS as it is not compatible with HCl
-     character(len=15) :: EQUILIB_WATER  = 'EQSAM' ! 'ISORROPIA'or 'EQSAM' !aerosol thermodynamics for PM water !DYTT Note that this version does not work with MARS as it is not compatible with HCl
+     character(len=15) :: EQUILIB  ='EQSAM'   ! 'ISORROPIA', 'EQSAM' !aerosol thermodynamics !DYTT Note that this code version does not work with MARS as it is not compatible with HCl
+     character(len=15) :: EQUILIB_WATER  = 'EQSAM' ! 'ISORROPIA'or 'EQSAM' !aerosol thermodynamics for PM water !DYTT Note that this code version does not work with MARS as it is not compatible with HCl
      logical          :: DYNAMICS = .false.
-     logical          :: INTERNALMIXED = .false. !DYTT this flag is set to .false. because this is the assumption made by this model version rv5.0. This flag is not, however, used in the code. Setting this to .true. will change nothing. 
+     logical          :: INTERNALMIXED = .false. !DYTT this flag is set to .false. because this is the assumption made by this model version rv5.0_EM. This flag is not, however, used in the code. Setting this to .true. will change nothing. 
      logical          :: CATIONS = .true.       ! dust cat assumption, now only used by ISORROPIA-Lite
      integer          :: NSIZE    = 7
      integer :: PM_F=1,SS_F=2,DU_F=3,SS_C=4,DU_C=5,PM=6  ! Will be set in GasParticleCoeffs_mod
