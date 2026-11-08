@@ -84,6 +84,10 @@ would like to find out. ***
 
 Added pCl and pNO3_f to various groups. 
 
+Note: added pNO3_f to OXN groups. Proceed with caution when using OXN. There 
+will be cases when you do not want to include the sea salt component of 
+OXN, i.e. pNO3_f which is associated with NaNO3. 
+
 ### CM_ChemRates_mod.f90
 
 Changed the uptake coefficient of HNO3 onto a coarse sea salt particle 
