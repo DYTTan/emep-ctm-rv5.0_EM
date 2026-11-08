@@ -83,9 +83,6 @@ PMFINE_GROUP but not the WDEP and DDEP equivalent, I do not know it but
 would like to find out. ***
 
 Added pCl and pNO3_f to various groups. 
-Note that I have NOT included pNO3_f in the SIA group. It is associated 
-with NaNO3 and the Na comes from sea salt, which is not included here. 
-However, I think maybe pNO3_f should actually be included...?
 
 ### CM_ChemRates_mod.f90
 
