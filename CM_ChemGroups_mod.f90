@@ -712,14 +712,14 @@ module ChemGroups_mod
       remPPM25_nonRes, remPPM25_Res  &
     /)
   
-  integer, public, target, save, dimension (4+2) :: & !DYTT 03/07/26 +2 for added pCl and pNO3_f
-    SIA_GROUP = (/ SO4, NO3_f, pNO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl and pNO3_f
+  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 +1 for added pCl
+    SIA_GROUP = (/ SO4, NO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl. Note: unclear if pNO3_f should also be added. I have not, as I do not want to introduce a charge imbalance (since the Na+ counter-ion cannot be added)
   
-  integer, public, target, save, dimension (4+2) :: & !DYTT 03/07/26 +2 for added pCl and pNO3_f
-    WDEP_SIA_GROUP = (/ SO4, NO3_f, pNO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl and pNO3_f
+  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 +1 for added pCl
+    WDEP_SIA_GROUP = (/ SO4, NO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl. Note: unclear if pNO3_f should also be added. I have not, as I do not want to introduce a charge imbalance (since the Na+ counter-ion cannot be added)
   
-  integer, public, target, save, dimension (4+2) :: & !DYTT 03/07/26 +2 for added pCl and pNO3_f
-    DDEP_SIA_GROUP = (/ SO4, NO3_f, pNO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl and pNO3_f
+  integer, public, target, save, dimension (4+1) :: & !DYTT 03/07/26 +1 for added pCl
+    DDEP_SIA_GROUP = (/ SO4, NO3_f, NO3_c, NH4_f, pCl /) !DYTT 03/07/26 added pCl. Note: unclear if pNO3_f should also be added. I have not, as I do not want to introduce a charge imbalance (since the Na+ counter-ion cannot be added)
   
   integer, public, target, save, dimension (2) :: &
     RDN_GROUP = (/ NH3, NH4_f /)

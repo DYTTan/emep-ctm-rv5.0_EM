@@ -86,6 +86,10 @@ Note: added pNO3_f to OXN groups. Proceed with caution when using OXN. There
 will be cases when you do not want to include the sea salt component of 
 OXN, i.e. pNO3_f which is associated with NaNO3. 
 
+Also note: it is unclear if pNO3_f should be added to the SIA groups. 
+I have not, as I do not want to introduce a charge imbalance (since the Na+ 
+counter-ion cannot be added). 
+
 ### CM_ChemRates_mod.f90
 
 Changed the uptake coefficient of HNO3 onto a coarse sea salt particle 
