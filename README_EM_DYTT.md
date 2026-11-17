@@ -1,6 +1,6 @@
 # EMEP MSC-W ACTM rv5.0_EM: adaptation of rv5.0 to include HCl chemistry, assuming externally mixed fine sea salt
 
-Changes made by Damaris Y. T. Tan (damtan@ceh.ac.uk / damaris.tan@ed.ac.uk).
+Changes made by Damaris Y. T. Tan (damtan@ceh.ac.uk / damaris.tan@ed.ac.uk),
 UK Centre for Ecology & Hydrology / University of Edinburgh.
 To be published on Zenodo shortly.
 Paper describing model changes to be submitted to ACP shortly.
@@ -22,8 +22,10 @@ liquid water content treatment as in the earlier version rv4.36.
 
 HCl chemistry has been added, assuming external mixing of fine sea salt. 
 
-HCl is produced via direct emissions, and via chemical reaction:
+HCl is produced via direct emissions, and via chemical reactions:
+
 HNO3 + fine sea salt -> HCl + fine NaNO3
+
 HNO3 + coarse sea salt -> HCl + coarse NaNO3 (this is a pre-existing reaction, 
 but HCl production was previously not accounted for.)
 
