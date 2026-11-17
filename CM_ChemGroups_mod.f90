@@ -696,17 +696,17 @@ module ChemGroups_mod
       EC_f_nonRes_age, remPPM25_nonRes, remPPM25_Res  &
     /)
   
-  integer, public, target, save, dimension (16+2+1) :: & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl. !DYTT 07/11/26 bugfix: +1 for missing OM25_p
+  integer, public, target, save, dimension (16+2) :: & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl.
     WDEP_PMFINE_GROUP = (/  &
-      SO4, NO3_f, pNO3_f, NH4_f, OM25_p, pCl, ffire_BC, ffire_remPPM25, SeaSalt_f,  & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl. !DYTT 07/11/26 bugfix: added in OM25_p
+      SO4, NO3_f, pNO3_f, NH4_f, pCl, ffire_BC, ffire_remPPM25, SeaSalt_f,  & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl.
       Dust_road_f, Dust_wb_f, Dust_sah_f, Ash_f, EC_f_Res_new,  &
       EC_f_Res_age, EC_f_nonRes_new, EC_f_nonRes_age,  &
       remPPM25_nonRes, remPPM25_Res  &
     /)
   
-  integer, public, target, save, dimension (16+2+1) :: & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl. !DYTT 07/11/26 bugfix: +1 for missing OM25_p
+  integer, public, target, save, dimension (16+2) :: & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl.
     DDEP_PMFINE_GROUP = (/  &
-      SO4, NO3_f, pNO3_f, NH4_f, OM25_p, pCl, ffire_BC, ffire_remPPM25, SeaSalt_f,  & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl. !DYTT 07/11/26 bugfix: added in OM25_p
+      SO4, NO3_f, pNO3_f, NH4_f, pCl, ffire_BC, ffire_remPPM25, SeaSalt_f,  & !DYTT-SSfreac 03/07/26 added pNO3_f !DYTT 03/07/26 added pCl.
       Dust_road_f, Dust_wb_f, Dust_sah_f, Ash_f, EC_f_Res_new,  &
       EC_f_Res_age, EC_f_nonRes_new, EC_f_nonRes_age,  &
       remPPM25_nonRes, remPPM25_Res  &
