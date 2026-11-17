@@ -1,8 +1,8 @@
 # EMEP MSC-W ACTM rv5.0_EM: adaptation of rv5.0 to include HCl chemistry, assuming externally mixed fine sea salt
 
-Changes made by Damaris Y. T. Tan (damtan@ceh.ac.uk / damaris.tan@ed.ac.uk)
-UK Centre for Ecology & Hydrology / University of Edinburgh 
-Published on Zenodo November 2026.
+Changes made by Damaris Y. T. Tan (damtan@ceh.ac.uk / damaris.tan@ed.ac.uk).
+UK Centre for Ecology & Hydrology / University of Edinburgh.
+To be published on Zenodo shortly.
 Paper describing model changes to be submitted to ACP shortly.
 
 Changes in the code are marked by the author's initials (DYTT). 
