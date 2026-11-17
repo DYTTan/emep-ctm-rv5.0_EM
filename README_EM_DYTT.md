@@ -41,9 +41,9 @@ treated stoichiometrically, i.e. individual sea salt ions are not tracked.
 
 3 new species were added:
 
-HCl gas.
-pCl: defined as the fine chloride associated with NH4Cl.
-pNO3_f: defined as the fine NO3 associated with fine NaNO3. 
+* HCl gas.
+* pCl: defined as the fine chloride associated with NH4Cl.
+* pNO3_f: defined as the fine NO3 associated with fine NaNO3. 
 
 ## Summary of changes in individual modules
 
